@@ -1,0 +1,55 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  telegramId String   @unique
+  username   String?
+  firstName  String?
+  createdAt  DateTime @default(now())
+  orders     Order[]
+}
+
+model Dish {
+  id         Int         @id @default(autoincrement())
+  name       String
+  callback   String
+  price      String
+  imgUrl     String
+  mealType   MealType?
+  orderItems OrderItem[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  user       User?        @relation(fields: [userId], references: [id])
+  userId     Int?
+  price      String
+  createdAt  DateTime    @default(now())
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+
+  order   Order @relation(fields: [orderId], references: [id])
+  orderId Int
+
+  dish   Dish @relation(fields: [dishId], references: [id])
+  dishId Int
+
+  price String
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+}

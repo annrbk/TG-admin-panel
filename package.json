@@ -1,0 +1,21 @@
+{
+  "name": "tg-admin-panel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/prisma": "^5.0.4",
+    "@prisma/client": "^6.11.1",
+    "adminjs": "^7.8.16",
+    "express": "^5.1.0",
+    "prisma": "^6.11.1"
+  }
+}
