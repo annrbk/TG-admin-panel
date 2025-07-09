@@ -4,7 +4,7 @@ import { Database, Resource, getModelByName } from "@adminjs/prisma";
 import { PrismaClient } from "@prisma/client";
 import { getRouterWithAuth } from "./auth.js";
 
-const PORT = process.env.port || 3000;
+const PORT = process.env.PORT || 3000;
 
 const prisma = new PrismaClient();
 
