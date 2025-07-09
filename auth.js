@@ -1,7 +1,9 @@
 import { DefaultAuthProvider } from "adminjs";
 import { buildAuthenticatedRouter } from "@adminjs/express";
-const session = require("express-session");
-const MemoryStore = require("memorystore")(session);
+import session from "express-session";
+import memorystore from "memorystore";
+
+const MemoryStore = memorystore(session);
 
 const authenticate = ({ email, password }, ctx) => {
   if (
