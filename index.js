@@ -36,6 +36,10 @@ const start = async () => {
   const router = getRouterWithAuth(admin);
   app.use(admin.options.rootPath, router);
 
+  app.get("/", (req, res) => {
+    res.redirect("/admin");
+  });
+
   app.listen(PORT, () => {
     console.log(
       `AdminJS started on http://localhost:${PORT}${admin.options.rootPath}`
