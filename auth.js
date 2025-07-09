@@ -1,5 +1,7 @@
 import { DefaultAuthProvider } from "adminjs";
 import { buildAuthenticatedRouter } from "@adminjs/express";
+const session = require("express-session");
+const MemoryStore = require("memorystore")(session);
 
 const authenticate = ({ email, password }, ctx) => {
   if (
@@ -24,10 +26,14 @@ export const getRouterWithAuth = (admin) => {
       provider: authProvider,
     },
     null,
-    {
+    session({
+      cookie: { maxAge: 86400000 },
+      store: new MemoryStore({
+        checkPeriod: 86400000,
+      }),
       secret: process.env.SECRET,
       resave: false,
       saveUninitialized: true,
-    }
+    })
   );
 };
